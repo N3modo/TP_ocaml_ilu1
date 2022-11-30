@@ -99,13 +99,14 @@ let rec composition f1 f2 =
       else composition f1 queue
   
 let rec produit f1 f2 =
-  let rec sousProduit (x1,y1) f2 = match f2 with
-    | [] -> []
-    | (x2,y2) :: queue2 -> ((x1,x2),(y1,y2)) :: sousProduit (x1,y1) queue2 in 
-  match f1 with 
-  | [] -> []
-  | (x,y) :: queue -> 
-      surcharge (sousProduit (x,y) f2) (produit queue f2)
+  let rec sousProduit x y f = 
+  match f with
+  |[]->[]
+  |(x1,y1) :: queue1 -> ((x,x1),(y,y1)) :: sousProduit x y queue
+  in
+  match f1 with
+  |[] -> []
+  |(x,y) :: queue -> sousProduit x y f2 @ produit queue f2
   
   
   

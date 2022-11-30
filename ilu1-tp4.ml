@@ -100,9 +100,9 @@ let rec composition f1 f2 =
   
 let rec produit f1 f2 =
   let rec sousProduit x y f = 
-  match f with
-  |[]->[]
-  |(x1,y1) :: queue1 -> ((x,x1),(y,y1)) :: sousProduit x y queue
+    match f with
+    |[]->[]
+    |(x1,y1) :: queue1 -> ((x,x1),(y,y1)) :: sousProduit x y queue1
   in
   match f1 with
   |[] -> []
